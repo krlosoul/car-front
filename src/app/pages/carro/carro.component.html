@@ -1,0 +1,55 @@
+<div class="panel">
+    <div class="panel-body">
+      <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12" align="right">
+            <br />
+            <button class="btn btn-primary" (click)="Guardar()">Guardar</button>&nbsp;
+            <button class="btn btn-danger" (click)="Vaciar()">Vaciar</button>&nbsp;
+            <br />
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="col-lg-12 col-md-12 col-sm-12">
+        <hr>
+        <table id="tbl" class="table table-striped">
+          <thead>
+            <tr>
+              <th style="width: 10%;">Referencia</th>
+              <th style="width: 50%;">Descripcion</th>
+              <th style="width: 8%;">Cantidad</th>
+              <th style="width: 8%;">Total</th>
+              <th style="width: 8%;">Estado</th>
+              <th style="width: 10%;">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of DataGrid" data-item="item">
+              <td>{{ item.pro_referencia }}</td>
+              <td>{{ item.producto.pro_descripcion }}</td>
+              <td><input type="number" min="1" class="form-control" (change)="onChangeCantidad($event, item.pro_referencia, item.producto.pro_valor )" value="{{ item.car_cantidad }}" /></td>
+              <td id="{{item.pro_referencia}}">{{ item.car_total }}</td>
+              <td [ngSwitch]="item.car_estado">
+                <div *ngSwitchCase="1">Agregado</div>
+                <div *ngSwitchCase="2">Actualizado</div>
+              </td>
+              <td><button class="btn btn-primary" title="Quitar producto del carrito" (click)="Quitar(item.pro_referencia)">Quitar</button></td>
+            </tr>
+          </tbody>
+        </table>
+  
+        <div class="d-flex justify-content-center p-2">
+          <ngb-pagination [maxSize]="10" [collectionSize]="collectionSize" (pageChange)="onChange($event)" [(page)]="page" [pageSize]="pageSize">
+          </ngb-pagination>
+  
+          <select class="custom-select" style="width: auto" [(ngModel)]="pageSize" (change)="cargarGrid()">
+            <option [ngValue]="5">5 Items por página</option>
+            <option [ngValue]="10">10 Items por página</option>
+            <option [ngValue]="20">20 Items por página</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+  

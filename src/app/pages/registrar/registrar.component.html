@@ -1,0 +1,89 @@
+<div class="panel">
+    <div class="panel-body">
+      <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="row">
+          <div class="col-lg-3 col-md-3 col-sm-3">
+            <div class="form-group">
+              <label [ngClass]="{'text-danger': error.nombres.error === true}">Nombres</label>
+              <input type="text" maxlength="45" class="form-control" [ngClass]="{'is-invalid': error.nombres.error === true}" [(ngModel)]="model.persona.per_nombres" />
+              <div *ngIf="error.nombres.error === true">
+                <small class="text-danger">
+                  {{ error.nombres.mensaje }}
+                </small>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-3 col-sm-3">
+            <div class="form-group">
+              <label [ngClass]="{'text-danger': error.apellidos.error === true}">Apellidos</label>
+              <input type="text" maxlength="45" class="form-control" [ngClass]="{'is-invalid': error.apellidos.error === true}" [(ngModel)]="model.persona.per_apellidos" />
+              <div *ngIf="error.apellidos.error === true">
+                <small class="text-danger">
+                  {{ error.apellidos.mensaje }}
+                </small>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-3 col-sm-3">
+            <div class="form-group">
+              <label [ngClass]="{'text-danger': error.usuario.error === true}">Usuario</label>
+              <input type="text" maxlength="45" class="form-control" [ngClass]="{'is-invalid': error.usuario.error === true}" [(ngModel)]="model.usu_usuario" />
+              <div *ngIf="error.usuario.error === true">
+                <small class="text-danger">
+                  {{ error.usuario.mensaje }}
+                </small>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-3 col-sm-3">
+            <div class="form-group">
+              <label [ngClass]="{'text-danger': error.clave.error === true}">Clave</label>
+              <input type="password" maxlength="45" class="form-control" [ngClass]="{'is-invalid': error.clave.error === true}" [(ngModel)]="model.usu_clave" />
+              <div *ngIf="error.clave.error === true">
+                <small class="text-danger">
+                  {{ error.clave.mensaje }}
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12" align="right">
+            <button class="btn btn-primary" (click)="registrar()">Registrar</button>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="col-lg-12 col-md-12 col-sm-12">
+        <hr>
+        <table id="tbl" class="table table-striped">
+          <thead>
+            <tr>
+              <th style="width: 50%;">Nombres</th>
+              <th style="width: 50%;">Apellidos</th>
+              <th style="width: 50%;">Usuario</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of DataGrid">
+              <td>{{ item.persona.per_nombres }}</td>
+              <td>{{ item.persona.per_apellidos }}</td>
+              <td>{{ item.usu_usuario }}</td>
+            </tr>
+          </tbody>
+        </table>
+  
+        <div class="d-flex justify-content-center p-2">
+          <ngb-pagination [maxSize]="10" [collectionSize]="collectionSize" (pageChange)="onChange($event)" [(page)]="page" [pageSize]="pageSize">
+          </ngb-pagination>
+  
+          <select class="custom-select" style="width: auto" [(ngModel)]="pageSize" (change)="cargarGrid()">
+            <option [ngValue]="5">5 Items por página</option>
+            <option [ngValue]="10">10 Items por página</option>
+            <option [ngValue]="20">20 Items por página</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+  

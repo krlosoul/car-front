@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row">
+      <div class="col-lg-4 col-md-4 col-sm-4"></div>
+      <div class="col-lg-4 col-md-4 col-sm-4 text-center container-login">
+        <div>
+          <div class="row">
+            <div class='col-lg-12 col-md-12 col-sm-12 align-center'>
+            </div>
+          </div><br><br>
+          <div class="m-t">
+            <div class="form-group" align="justify">
+              <label [ngClass]="{'text-danger': error.usuario.error === true}">Usuario</label>
+              <input type="text" maxlength="45" class="form-control" [ngClass]="{'is-invalid': error.usuario.error === true}" [(ngModel)]="model.usu_usuario" />
+              <div *ngIf="error.usuario.error === true">
+                <small class="text-danger">
+                  {{ error.usuario.mensaje }}
+                </small>
+              </div>
+            </div>
+            <div class="form-group" align="justify">
+              <label [ngClass]="{'text-danger': error.clave.error === true}">Clave</label>
+              <input type="password" maxlength="45" class="form-control" [ngClass]="{'is-invalid': error.clave.error === true}" [(ngModel)]="model.usu_clave" />
+              <div *ngIf="error.clave.error === true">
+                <small class="text-danger">
+                  {{ error.clave.mensaje }}
+                </small>
+              </div>
+            </div>
+            <button class="btn btn-primary" (click)="login()">Iniciar Sesión</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4"></div>
+    </div>
+  </div>
+  

@@ -1,0 +1,3 @@
+<h1>Bienvenido</h1>
+<p *ngIf="!this.auth.isLogin">Por favor, inicie sesión o regístrese</p>
+<p *ngIf="this.auth.isLogin">Ahora puede agrear productos nuevos, enviarlos al carrito, entre otras opciones</p>
